@@ -378,7 +378,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     _pagingScrollView.alpha = 0.0f;
     
     UIImage *imageFromView = _scaleImage ? _scaleImage : [self getImageFromView:_senderViewForAnimation];
-    imageFromView = [self rotateImageToCurrentOrientation:imageFromView];
+    //GUY imageFromView = [self rotateImageToCurrentOrientation:imageFromView];
     
     _senderViewOriginalFrame = [_senderViewForAnimation.superview convertRect:_senderViewForAnimation.frame toView:nil];
     
@@ -393,7 +393,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     UIImageView *resizableImageView = [[UIImageView alloc] initWithImage:imageFromView];
     resizableImageView.frame = _senderViewOriginalFrame;
     resizableImageView.clipsToBounds = YES;
-    resizableImageView.contentMode = UIViewContentModeScaleAspectFill;
+    resizableImageView.contentMode = UIViewContentModeScaleAspectFit;//GUY UIViewContentModeScaleAspectFill;
     resizableImageView.backgroundColor = [UIColor colorWithWhite:(_useWhiteBackgroundColor) ? 1 : 0 alpha:1];
     [_applicationWindow addSubview:resizableImageView];
     _senderViewForAnimation.hidden = YES;
@@ -416,7 +416,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     if(_usePopAnimation)
     {
         [self animateView:resizableImageView
-                  toFrame:finalImageViewFrame
+                  toFrame:fadeView.frame //GUY finalImageViewFrame
                completion:completion];
     }
     else
